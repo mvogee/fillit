@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "fillit.h"
+#include <stdio.h>
 
 void		error_call(void)
 {
@@ -24,7 +25,10 @@ static int		open_file(char *file)
 
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
+	{
+		printf("Occured on line %d.\n", __LINE__);
 		error_call();
+	}
 	return (fd);
 }
 
@@ -37,7 +41,10 @@ static void		between_pieces(int fd)
 
 	check = read(fd, buf, 1);
 	if (!check || buf[0] == '\n')
+	{
+		printf("Occured on line %d.\n", __LINE__);
 		error_call();
+	}
 }
 
 static int		fill_buf(int fd)
@@ -46,38 +53,44 @@ static int		fill_buf(int fd)
 	int		check;
 	int		i;
 	int		block_count;
+	int		c_count;
 
+	c_count = 0;
 	// read might return less than 5 and be ok
 	check = read(fd, buf, 20);
 	if (!check)
 		return (0);
 	if (check != 20)
+	{
+		printf("Occured on line %d.\n", __LINE__);
 		error_call();
+	}
 	i = 0;
 	block_count = 0;
-	while (i < 20)
+	while (i < 19)
 	{
-		if (i % 4 == 0 && buf[i++] != '\n')
+		if (c_count % 4 == 0 && c_count >= 4 && buf[i++] != '\n')
+		{
+			printf("Occured on line %d, i = %d.\n", __LINE__, i);
 			error_call();
-		if (buf[i] != '.' || buf[i] != '#')
+			c_count = 0;
+		}
+		if (buf[i] != '.' && buf[i] != '#')
+		{
+			printf("Occured on line %d, i = %d, char = %c.\n", __LINE__, i, buf[i]);
 			error_call();
+		}
 		if (buf[i] == '#')
 			block_count++;
 		if (block_count > 4)
+		{
+			printf("Occured on line %d.\n", __LINE__);
 			error_call();
+		}
 		i++;
+		c_count++;
 	}
 	return (1);
-}
-
-static void		between_piece(int fd)
-{
-	char	buf[1];
-	int		check;
-
-	check = read(fd, buf, 1);
-	if (!check || buf[0] == '\n')
-		error_call();
 }
 
 // char 	**create_piece(char *buf)
@@ -94,12 +107,25 @@ void			read_file(char *file)
 		if (!fill_buf(fd))
 			break ;
 		else
+		{
+			printf("IT WORKS MATT!!!\n");
+			write(1, "boo\n", 4);
+			printf("more stuff\n");
+			printf("piece_count = %d\n", piece_count);
 			piece_count++;
+			printf("piece_count = %d\n", piece_count);
+		}
 		if (piece_count > 26)
+		{
+			printf("Occured on line %d.\n", __LINE__);
 			error_call();
+		}
 		between_pieces(fd);
 	}
 	if (close(fd) != 0)
+	{
+		printf("Occured on line %d.\n", __LINE__);
 		error_call();
+	}
 }
 
