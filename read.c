@@ -70,6 +70,18 @@ static int		fill_buf(int fd)
 	return (1);
 }
 
+static void		between_piece(int fd)
+{
+	char	buf[1];
+	int		check;
+
+	check = read(fd, buf, 1);
+	if (!check || buf[0] == '\n')
+		error_call();
+}
+
+// char 	**create_piece(char *buf)
+
 void			read_file(char *file)
 {
 	unsigned int	piece_count;
