@@ -109,8 +109,6 @@ void			read_file(char *file)
 		else
 		{
 			printf("IT WORKS MATT!!!\n");
-			write(1, "boo\n", 4);
-			printf("more stuff\n");
 			printf("piece_count = %d\n", piece_count);
 			piece_count++;
 			printf("piece_count = %d\n", piece_count);
