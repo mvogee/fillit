@@ -6,7 +6,7 @@
 /*   By: cfredric <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/03 11:49:12 by cfredric          #+#    #+#             */
-/*   Updated: 2016/10/03 19:18:25 by cfredric         ###   ########.fr       */
+/*   Updated: 2016/10/03 19:47:53 by mvogee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int		open_file(char *file)
 {
 	int		fd;
 
-	fd = open(file, _RDONLY);
+	fd = open(file, O_RDONLY);
 	if (fd < 0)
 		error_call();
 	return (fd);
@@ -69,7 +69,6 @@ static void		between_piece(int fd)
 		error_call();
 }
 
-create_piece()
 
 void			read_file(char *file)
 {
@@ -86,7 +85,7 @@ void			read_file(char *file)
 			piece_count++;
 		if (piece_count > 26)
 			error_call();
-		between_pieces(fd);
+		between_piece(fd);
 	}
 }
 

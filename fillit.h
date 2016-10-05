@@ -6,7 +6,7 @@
 /*   By: mvogee <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/02 21:35:41 by mvogee            #+#    #+#             */
-/*   Updated: 2016/10/03 10:18:52 by mvogee           ###   ########.fr       */
+/*   Updated: 2016/10/03 19:42:21 by mvogee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,6 @@ typedef enum e_num
 
 }				e_nblocks;
 
-int BUFF = 4;
+void			read_file(char *file);
 
 #endif
