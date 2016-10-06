@@ -6,15 +6,19 @@
 #    By: cfredric <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/10/03 09:12:37 by cfredric          #+#    #+#              #
-#    Updated: 2016/10/03 10:19:16 by cfredric         ###   ########.fr        #
+#    Updated: 2016/10/05 15:27:43 by mvogee           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = Fillit
+NAME = fillit
 
-SOURCE  = 
+SOURCE  = main.c \
+		  readv2.c \
+		  libft/ft_strcpy.c \
+		  libft/ft_strcat.c \
+		  libft/ft_strlen.c \
 
-HEADER = Fillit.h
+HEADER = fillit.h
 
 OBJS = 	$(SOURCE:.c=.o)
 
@@ -24,14 +28,12 @@ MEMERROR = -fsanitize=address
 
 CFLAGS = -Wall -Wextra -Werror
 
-LIBFLAG = -L
-
 .PHONY: all clean fclean re
 
 all: $(NAME)
 
 $(NAME):
-	$(CC) $(CFLAGS) $(SOURCE) -o (NAME)
+	$(CC) $(CFLAGS) $(SOURCE) -o $(NAME)
 
 clean:
 	/bin/rm -f $(OBJS)
