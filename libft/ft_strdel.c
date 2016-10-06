@@ -1,25 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fillit.h                                           :+:      :+:    :+:   */
+/*   ft_strdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mvogee <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/10/02 21:35:41 by mvogee            #+#    #+#             */
-/*   Updated: 2016/10/05 15:20:51 by mvogee           ###   ########.fr       */
+/*   Created: 2016/09/28 11:53:18 by mvogee            #+#    #+#             */
+/*   Updated: 2016/09/28 12:03:15 by mvogee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FILLIT_H
-# define FILLIT_H
+#include "libft.h"
 
-#include <unistd.h>
-#include <stdlib.h>
-#include <fcntl.h>
-#include "libft/libft.h"
-
-void			error_call(void);
-//void			read_file(char *file);
-void			open_file(char *file);
-
-#endif
+void	ft_strdel(char **as)
+{
+	free(*as);
+	*as = NULL;
+}

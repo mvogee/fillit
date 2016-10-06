@@ -1,25 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fillit.h                                           :+:      :+:    :+:   */
+/*   ft_strncpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mvogee <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/10/02 21:35:41 by mvogee            #+#    #+#             */
-/*   Updated: 2016/10/05 15:20:51 by mvogee           ###   ########.fr       */
+/*   Created: 2016/09/22 19:58:21 by mvogee            #+#    #+#             */
+/*   Updated: 2016/09/22 20:00:23 by mvogee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FILLIT_H
-# define FILLIT_H
+#include "libft.h"
 
-#include <unistd.h>
-#include <stdlib.h>
-#include <fcntl.h>
-#include "libft/libft.h"
+char	*ft_strncpy(char *dst, const char *src, size_t len)
+{
+	int count;
+	int srclen;
 
-void			error_call(void);
-//void			read_file(char *file);
-void			open_file(char *file);
-
-#endif
+	count = 0;
+	srclen = (int)ft_strlen((char*)src);
+	while (count < (int)len)
+	{
+		if (count > srclen)
+			dst[count] = '\0';
+		else
+		{
+			dst[count] = src[count];
+		}
+		count++;
+	}
+	return (dst);
+}

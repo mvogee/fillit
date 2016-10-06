@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fillit.h                                           :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mvogee <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/10/02 21:35:41 by mvogee            #+#    #+#             */
-/*   Updated: 2016/10/05 15:20:51 by mvogee           ###   ########.fr       */
+/*   Created: 2016/09/23 16:31:21 by mvogee            #+#    #+#             */
+/*   Updated: 2016/09/23 16:33:15 by mvogee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FILLIT_H
-# define FILLIT_H
+#include "libft.h"
 
-#include <unistd.h>
-#include <stdlib.h>
-#include <fcntl.h>
-#include "libft/libft.h"
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
+{
+	size_t s1len;
+	size_t s2len;
 
-void			error_call(void);
-//void			read_file(char *file);
-void			open_file(char *file);
-
-#endif
+	s1len = (size_t)ft_strlen((char*)s1) + 1;
+	s2len = (size_t)ft_strlen((char*)s2) + 1;
+	if (n <= 0)
+		return (0);
+	if (s1len == s2len && s1len < n)
+		return (ft_memcmp(s1, s2, s1len));
+	return (ft_memcmp(s1, s2, n));
+}

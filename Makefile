@@ -6,13 +6,21 @@
 #    By: cfredric <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/10/03 09:12:37 by cfredric          #+#    #+#              #
+<<<<<<< HEAD
+#    Updated: 2016/10/05 15:27:43 by mvogee           ###   ########.fr        #
+=======
 #    Updated: 2016/10/04 20:06:54 by cfredric         ###   ########.fr        #
+>>>>>>> b5742f7c9b96b2fae10deaadf264279c9fda2220
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fillit
 
-SOURCE  = fillit.c read.c
+SOURCE  = main.c \
+		  readv2.c \
+		  libft/ft_strcpy.c \
+		  libft/ft_strcat.c \
+		  libft/ft_strlen.c \
 
 HEADER = fillit.h
 

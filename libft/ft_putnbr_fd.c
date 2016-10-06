@@ -1,25 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fillit.h                                           :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mvogee <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/10/02 21:35:41 by mvogee            #+#    #+#             */
-/*   Updated: 2016/10/05 15:20:51 by mvogee           ###   ########.fr       */
+/*   Created: 2016/09/27 14:36:53 by mvogee            #+#    #+#             */
+/*   Updated: 2016/09/27 15:05:04 by mvogee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FILLIT_H
-# define FILLIT_H
+#include "libft.h"
 
-#include <unistd.h>
-#include <stdlib.h>
-#include <fcntl.h>
-#include "libft/libft.h"
+void	ft_putnbr_fd(int n, int fd)
+{
+	long	tmp;
 
-void			error_call(void);
-//void			read_file(char *file);
-void			open_file(char *file);
-
-#endif
+	tmp = (long)n;
+	if (tmp < 0)
+	{
+		ft_putchar_fd('-', fd);
+		tmp *= -1;
+	}
+	if (tmp / 10)
+		ft_putnbr_fd(tmp / 10, fd);
+	ft_putchar_fd(tmp % 10 + '0', fd);
+}

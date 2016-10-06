@@ -1,25 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fillit.h                                           :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mvogee <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/10/02 21:35:41 by mvogee            #+#    #+#             */
-/*   Updated: 2016/10/05 15:20:51 by mvogee           ###   ########.fr       */
+/*   Created: 2016/09/25 21:01:09 by mvogee            #+#    #+#             */
+/*   Updated: 2016/09/29 15:30:05 by mvogee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FILLIT_H
-# define FILLIT_H
+#include "libft.h"
 
-#include <unistd.h>
-#include <stdlib.h>
-#include <fcntl.h>
-#include "libft/libft.h"
+void	*ft_memmove(void *dst, const void *src, size_t len)
+{
+	void *tmp;
 
-void			error_call(void);
-//void			read_file(char *file);
-void			open_file(char *file);
-
-#endif
+	tmp = dst;
+	if (dst < src)
+	{
+		while ((size_t)(dst - tmp) < len)
+			*(unsigned char*)dst++ = *(unsigned char*)src++;
+	}
+	else
+	{
+		while (len-- > 0)
+			((unsigned char*)dst)[len] = ((unsigned char*)src)[len];
+	}
+	return (tmp);
+}
