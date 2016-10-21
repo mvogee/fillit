@@ -5,48 +5,60 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mvogee <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/10/02 14:36:00 by mvogee            #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2016/10/03 20:55:38 by mvogee           ###   ########.fr       */
-=======
-/*   Updated: 2016/10/03 19:33:15 by cfredric         ###   ########.fr       */
->>>>>>> 634f893905c47fc50d1898f955f9e048d59ebf56
+/*   Created: 2016/10/20 22:42:27 by mvogee            #+#    #+#             */
+/*   Updated: 2016/10/20 22:42:29 by mvogee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "fillit.h"
+#include <stdio.h>
 
-int main(int ac, char **av)
+char	**create_board(int size)
 {
-	int		fd;
-	size_t	buf;
-	char	*tmp;
-	char	*fullstr;
-	size_t	fullsize;
+	int		colcount;
+	int		rowcount;
+	char	**board;
 
-	buf = 1;
-	fullsize = 0;
-
-	if (ac == 2)
+	colcount = 0;
+	rowcount = 0;
+	while (colcount <= size)
 	{
-<<<<<<< HEAD
-		while
+		board[colcount] = (char*)malloc(sizeof(char) * (size) + 1);
+		colcount++;
+	}
+	//if (!board)
+	//	error_call(3);
+	while (rowcount <= size)
+	{
+		colcount = 0;
+		while (colcount <= size)
 		{
-			fd = open(av[1], O_RDONLY);
-			tmp = (char*)malloc(sizeof(char) * buf + 1);
-			(void)read(fd, tmp, buf);
-			fullsize++;
-			fullstr = (char*)malloc
+			board[rowcount][colcount] = '.';
+			colcount++;
 		}
+		board[rowcount][colcount] = '\0';
+		rowcount++;
 	}
-	else 
-		printf("you are stupid");
-=======
-		read_file(ac[1]);
-	}
-	else
-		write(1, "usage: ./fillit source_file", 27);
->>>>>>> 634f893905c47fc50d1898f955f9e048d59ebf56
+	return (board);
+}
+
+void	start_fillit(int *piecenums, int piececount)
+{
+	int		boardsize;
+	char	**board;
+
+	boardsize = ((piececount / 2) + 1);
+	if (boardsize == 1)
+		boardsize = 2;
+	board = create_board(boardsize);
+	printf("%s\n", board[0]);
+	printf("%s\n",board[1]);
+	(void)piecenums;
+}
+
+int main(void)
+{
+	int piece[5] = {1, 2, 3, 4, 5};
+	start_fillit(piece, 2);
 	return (0);
 }

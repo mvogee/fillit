@@ -12,7 +12,7 @@
 
 #include "fillit.h"
 
-int		valid_piece_compare_p2(char *str)
+static int		valid_piece_compare_p2(char *str)
 {
 	if (ft_strcmp(str, "##..\n#...\n#") == 0)
 		return (L_INVRT);
@@ -39,7 +39,7 @@ int		valid_piece_compare_p2(char *str)
 	return (0);
 }
 
-int		valid_piece_compare(char *str)
+int				valid_piece_compare(char *str)
 {
 	if (ft_strcmp(str, "##..\n##") == 0)
 		return (SQUARE);

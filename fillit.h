@@ -13,13 +13,44 @@
 #ifndef FILLIT_H
 # define FILLIT_H
 
-#include <unistd.h>
-#include <stdlib.h>
-#include <fcntl.h>
-#include "libft/libft.h"
+# include <unistd.h>
+# include <stdlib.h>
+# include <fcntl.h>
+# include "libft/libft.h"
 
-void			error_call(void);
-//void			read_file(char *file);
-void			open_file(char *file);
+typedef enum			e_pieces
+{
+	NOT_SET = 			0,
+	SQUARE = 			1,
+	STRAT = 			2,
+	STRAT_FLT = 		3,
+	L = 				4,
+	L_REVRS = 			5,
+	L_INVRT = 			6,
+	L_REVRS_INVRT = 	7,
+	L_FLT = 			8,
+	L_FLT_REVRS = 		9,
+	L_FLT_INVRT = 		10,
+	L_FLT_INVRT_REVRS = 11,
+	Z = 				12,
+	Z_ROTAT_REVRS = 	13,
+	Z_REVRS = 			14,
+	Z_ROTAT = 			15,
+	T = 				16,
+	T_ROTAT = 			17,
+	T_ROTAT_REVRS = 	18,
+	T_INVRT = 			19
+}						t_type;
+
+/* readv2 */
+void			error_call(int type);
+char			*open_file(char *file);
+/* validation_check 1 and 2 */
+int				*validation_check(char *pieces);
+int				validate_file(char *pieces, int index);
+int				hash_count(char *pieces);
+/* valid_piece_compare */
+int				valid_piece_compare(char *str);
+
 
 #endif

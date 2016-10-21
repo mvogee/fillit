@@ -22,22 +22,17 @@ int		count_pieces(int *array)
 	return (count);
 }
 
-void	main_main(int total_pieces, int *pieces)
-{
-	// pass board length using the board_len function to create_pieces
-	create_pieces(total_pieces, pieces);
-}
-
 int		main(int ac, char **av)
 {
 	char	*pieces_array;
 	int		*pieces;
+	int		piececount;
 
 	if (ac == 2)
 	{
 		pieces_array = open_file(av[1]);
 		pieces = validation_check(pieces_array);
-		main_main(count_pieces(pieces), pieces);
+		start_fillit(pieces, count_pieces(pieces));
 	}
 	else
 		write(1, "usage: fillit input_file", 24);
