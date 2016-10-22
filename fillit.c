@@ -16,7 +16,7 @@
 char	**place_piece(char **board, int piecnum, int id)
 {
 	char	charid;
-	int		*positions;
+	int		positions[4][2];
 
 	charid = 'A' + id;
 	positions = get_positions(piecnum);
