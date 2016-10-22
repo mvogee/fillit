@@ -13,8 +13,13 @@
 #include "fillit.h"
 #include <stdio.h>
 
-char	**place_piece(char **board, int piecnum)
+char	**place_piece(char **board, int piecnum, int id)
 {
+	char	charid;
+	int		*positions;
+
+	charid = 'A' + id;
+	positions = get_positions(piecnum);
 
 }
 
@@ -36,7 +41,7 @@ int		start_solve(int *piecenums, char **board, int piececount, int count)
 
 	solvable = 0;
 	x = 0;
-	board = place_piece(board, piecenums[count], x);
+	board = place_piece(board, piecenums[count], count);
 	while (count < piececount)
 	{
 		if (board == NULL)
