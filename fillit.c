@@ -16,11 +16,25 @@
 char	**place_piece(char **board, int piecnum, int id)
 {
 	char	charid;
-	int		positions[4][2];
+	int		**positions;
+	int		placeable;
+	int		count;
+	int		count2;
 
+	count = 0;
 	charid = 'A' + id;
 	positions = get_positions(piecnum);
-
+	placeable = check_positions(board);
+	while (placeable != 1 || placeable != -1)
+		placeable = check_positions(board);
+	while (count < 4)
+		{
+			count2 = 0;
+			while (count2 < 2)
+			{
+				while (positions[count][count2] != '.');
+			}
+		}
 }
 
 /* start_slove
