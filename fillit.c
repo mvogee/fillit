@@ -13,6 +13,12 @@
 #include "fillit.h"
 #include <stdio.h>
 
+/* place_piece
+** - Creates the letter that will represent the piece
+** - Gets the index positions of the given piece
+** - Finds the first place that the piece can be placed
+** - Places the charid int the correct indexes and returns the updated board
+*/
 char	**place_piece(char **board, int piecnum, int id)
 {
 	char	charid;
@@ -24,17 +30,17 @@ char	**place_piece(char **board, int piecnum, int id)
 	count = 0;
 	charid = 'A' + id;
 	positions = get_positions(piecnum);
-	placeable = check_positions(board);
-	while (placeable != 1 || placeable != -1)
-		placeable = check_positions(board);
+	positions = check_positions(board, positions);
+	if (positions == NULL)
+		return (NULL);
 	while (count < 4)
+	{
+		count2 = 0;
+		while (count2 < 2)
 		{
-			count2 = 0;
-			while (count2 < 2)
-			{
-				while (positions[count][count2] != '.');
-			}
+			while (positions[count][count2] != '.');
 		}
+	}
 }
 
 /* start_slove
