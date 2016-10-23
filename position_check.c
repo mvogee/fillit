@@ -12,29 +12,52 @@
 
 #include "fillit.h"
 
+/* find_xshift
+** finds the smallest x value of the positions
+** 
+*/
+int		find_xshift(int **postiions)
+{
+	int xshift;
+	int iter;
+
+	xshift = 1000000;
+	iter = 0;
+	while (iter < 4)
+	{
+		if (positions[iter][1] < xshift)
+			xshift = positions[iter][1];
+		iter++;
+	}
+	return (xshift);
+}
+
 // Shifting back to beggining of board we can subtract the smallest X value from all pieces to arrive back at the original x values
 // Y will never have to shift back up.
 
 int		**shift_positions(char **board, int **positions, int count, int count2)
 {
 	int iter;
-	int iter2;
+	int xshift;
 
 	iter = 0;
 	if (positions[count][count2] == '\0')
 		return (NULL);
-	else if (positions[count][count2] == '\n')
-		return (y_shift(**board, int **positions)) // make this function
-	else
+	else if (positions[count][count2] == '\n') // shift y down 1 and reset x values to original
+	{
+		xshift = find_xshift(positions); // find the value to shift x back
+		while(iter < 4)
+		{
+			positions[iter][1] -= xshift; // shift x back
+			positions[iter][0] += 1;	// iterate y value
+			iter++;
+		}
+	}
+	else // x shift
 	{
 		while(iter < 4)
 		{
-			iter2 = 0;
-			while (iter2 < 2)
-			{
-				positions[iter][iter2] += 1;
-				iter2++;
-			}
+			positions[iter][1] += 1;
 			iter++;
 		}
 	}
