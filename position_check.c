@@ -16,8 +16,9 @@
 ** finds the smallest x value of the positions
 ** 
 */
-int		find_xshift(int **postiions)
+int		find_xshift(int **positions)
 {
+	write(1, "entered find_xshift\n", 20); // REMOVE THIS LINE
 	int xshift;
 	int iter;
 
@@ -37,13 +38,14 @@ int		find_xshift(int **postiions)
 
 int		**shift_positions(char **board, int **positions, int count, int count2)
 {
+	write(1, "entered shift_positions\n", 24); // REMOVE THIS LINE
 	int iter;
 	int xshift;
 
 	iter = 0;
-	if (positions[count][count2] == '\0')
+	if (board[count][count2] == '\0')
 		return (NULL);
-	else if (positions[count][count2] == '\n') // shift y down 1 and reset x values to original
+	else if (board[count][count2] == '\n') // shift y down 1 and reset x values to original
 	{
 		xshift = find_xshift(positions); // find the value to shift x back
 		while(iter < 4)
@@ -64,7 +66,8 @@ int		**shift_positions(char **board, int **positions, int count, int count2)
 	return (positions);
 }
 
-/* check_positions
+/* check_positions 
+** Called form place_piece in fillit.c
 ** check each position on the board to see if it is open
 ** if a position is not open call shift to shift the positions
 ** if there is no valid place to put the piece return NULL
@@ -73,6 +76,7 @@ int		**shift_positions(char **board, int **positions, int count, int count2)
 
 int 	**check_positions(char **board, int **positions)
 {
+	write(1, "entered check_positions\n", 24); //REMOVE THIS LINE
 	int count;
 	int count2;
 

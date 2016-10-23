@@ -51,6 +51,16 @@ int				validate_file(char *pieces, int index);
 int				hash_count(char *pieces);
 /* valid_piece_compare */
 int				valid_piece_compare(char *str);
-
+/* piece_positions */
+int				**get_positions(int piecenum);
+/*  position_check */
+int				find_xshift(int **positions);
+int				**shift_positions(char **board, int **positions, int count, int count2);
+int 			**check_positions(char **board, int **positions);
+/* fillit */
+char			**place_piece(char **board, int piecnum, int id);
+int				start_solve(int *piecenums, char **board, int piececount, int count);
+char			**create_board(int size, int colcount, int rowcount);
+void			start_fillit(int *piecenums, int piececount);
 
 #endif

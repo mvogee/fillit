@@ -21,9 +21,9 @@
 */
 char	**place_piece(char **board, int piecnum, int id)
 {
+	write(1, "entered place_piece\n", 20); // REMOVE THIS LINE
 	char	charid;
 	int		**positions;
-	int		placeable;
 	int		count;
 	int		count2;
 
@@ -41,6 +41,7 @@ char	**place_piece(char **board, int piecnum, int id)
 			while (positions[count][count2] != '.');
 		}
 	}
+	return (board);
 }
 
 /* start_slove
@@ -56,6 +57,7 @@ char	**place_piece(char **board, int piecnum, int id)
 
 int		start_solve(int *piecenums, char **board, int piececount, int count)
 {
+	write(1, "entered start_solve\n", 20); // REMOVE THIS LINE
 	int solvable; // set so that we can return when appropriate
 	int x; // itterator for position to attemp to place the piece when we need to move it
 
@@ -67,12 +69,12 @@ int		start_solve(int *piecenums, char **board, int piececount, int count)
 		if (board == NULL)
 			return (-1);
 		solvable = start_solve(piecenums, board, piececount, count + 1);
-		board = move_piece(count, x);
+	//	board = move_piece(count, x);
 		x++;
 	}
-	print_result(board);
+	//print_result(board);
 	//free(board) // make sure you find out how to free 2d array correctly
-	exit(SUCCSESS);
+	exit(42);
 	return (1);
 }
 
@@ -80,17 +82,18 @@ int		start_solve(int *piecenums, char **board, int piececount, int count)
 ** -create_board creats the board based on the size given
 ** - RETURN: 2d array filled with '.' each row ending in \0
 ** ALWAYS PASS COLCOUNT AND ROWCOUNT AS 0
-** MODIFIED SHOULD STILL BE WORKING.
+** MODIFIED BORKEN.
 */
 
 char	**create_board(int size, int colcount, int rowcount)
 {
+	write(1, "entered create_board\n", 21); // remove this line
 	char	**board;
 
 	board = (char **)malloc(sizeof(char *) * size);
 	while (colcount < size)
 	{
-		board[colcount] = (char *)malloc(sizeof(char) * size + 2);
+		board[colcount] = (char *)malloc(sizeof(char) * size + 1);
 		colcount++;
 	}
 	if (!board)
@@ -104,10 +107,11 @@ char	**create_board(int size, int colcount, int rowcount)
 			colcount++;
 		}
 		board[rowcount][colcount] = '\n';
-		board[rowcount][colcount + 1] = '\0';
+		//board[rowcount][colcount + 1] = '\0';
 		rowcount++;
 	}
 	board[rowcount][colcount] = '\0';
+	write(1, "exit create board\n", 18); // REMOVE THIS LINE
 	return (board);
 }
 
@@ -123,6 +127,7 @@ char	**create_board(int size, int colcount, int rowcount)
 
 void	start_fillit(int *piecenums, int piececount)
 {
+	write(1, "entered start_fillit\n", 21); // REMOVE THIS LINE
 	int		boardsize;
 	char	**board;
 	int		solved;
@@ -144,7 +149,7 @@ void	start_fillit(int *piecenums, int piececount)
 			boardsize++;
 		}
 		if (solved == 1)
-			exit(SUCCSESS);
+			exit(10);
 		//free(board); figure out how to correctly free double pointer
 	}
 
@@ -158,7 +163,7 @@ void	start_fillit(int *piecenums, int piececount)
 // DELETE THIS MAIN
 int main(void)
 {
-	int piece[5] = {1, 2, 3, 4, 5};
-	start_fillit(piece, 11);
+	int piece[2] = {1, 1};
+	start_fillit(piece, 2);
 	return (0);
 }
