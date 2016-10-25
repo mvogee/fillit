@@ -55,12 +55,16 @@ int				valid_piece_compare(char *str);
 int				**get_positions(int piecenum);
 /*  position_check */
 int				find_xshift(int **positions);
-int				**shift_positions(char **board, int **positions, int count, int count2);
+int				**shift_positions(char **board, int **positions, int count);
 int 			**check_positions(char **board, int **positions);
+char			**undo_place(char **board, int **positions);
 /* fillit */
-char			**place_piece(char **board, int piecnum, int id);
+char			**place_piece(char **board, int **positions, int id);
 int				start_solve(int *piecenums, char **board, int piececount, int count);
 char			**create_board(int size, int colcount, int rowcount);
 void			start_fillit(int *piecenums, int piececount);
+
+/* pirnt board */
+void			print_board(char **board);
 
 #endif

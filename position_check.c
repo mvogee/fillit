@@ -11,6 +11,21 @@
 /* ************************************************************************** */
 
 #include "fillit.h"
+#include <stdio.h>
+
+char	**undo_place(char **board, int **positions)
+{
+	int iter;
+
+	iter = 0;
+	while (iter < 4)
+	{
+		board[positions[iter][0]][positions[iter][1]] = '.';
+		iter++;
+	}
+	print_board(board);
+	return (board);
+}
 
 /* find_xshift
 ** finds the smallest x value of the positions
@@ -36,16 +51,16 @@ int		find_xshift(int **positions)
 // Shifting back to beggining of board we can subtract the smallest X value from all pieces to arrive back at the original x values
 // Y will never have to shift back up.
 
-int		**shift_positions(char **board, int **positions, int count, int count2)
+int		**shift_positions(char **board, int **positions, int count)
 {
 	write(1, "entered shift_positions\n", 24); // REMOVE THIS LINE
 	int iter;
 	int xshift;
 
 	iter = 0;
-	if (board[count][count2] == '\0')
+	if (board[positions[count][0]][positions[count][1]] == '\0')
 		return (NULL);
-	else if (board[count][count2] == '\n') // shift y down 1 and reset x values to original
+	else if (board[positions[count][0]][positions[count][1]] == '\n') // shift y down 1 and reset x values to original
 	{
 		xshift = find_xshift(positions); // find the value to shift x back
 		while(iter < 4)
@@ -63,6 +78,7 @@ int		**shift_positions(char **board, int **positions, int count, int count2)
 			iter++;
 		}
 	}
+	write(1, "exit shift_positions\n", 21);
 	return (positions);
 }
 
@@ -78,26 +94,29 @@ int 	**check_positions(char **board, int **positions)
 {
 	write(1, "entered check_positions\n", 24); //REMOVE THIS LINE
 	int count;
-	int count2;
 
 	count = 0;
 	while (count < 4)
 	{
-		count2 = 0;
-		while (count2 < 2)
+		if (board[positions[count][0]][positions[count][1]] == '\0')
 		{
-			if (positions[count][count2] != '.')
-			{
-				positions = shift_positions(board, positions, count, count2);
-				if (positions == NULL)
-					return (NULL);
-				count = 0;
-				count2 = 0;
-				continue ;
-			}
-			count2++;
+			write(1, "NULL\n", 5);
+				return (NULL);
 		}
 		count++;
 	}
+	count = 0;
+	while (count < 4)
+	{
+		if (board[positions[count][0]][positions[count][1]] != '.')
+		{
+			positions = shift_positions(board, positions, count);
+			if (positions == NULL)
+				return (NULL);
+			count = 0;
+		}
+		count++;
+	}
+	write(1,"exit check_positions\n", 21);
 	return (positions);
 }
