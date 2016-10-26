@@ -98,7 +98,7 @@ int		**shift_positions(char **board, int **positions, int count)
 	else if (board[positions[count][0]][positions[count][1]] == '\n')
 	{
 		xshift = find_xshift(positions);
-		while(iter < 4)
+		while (iter < 4)
 		{
 			positions[iter][1] -= xshift;
 			positions[iter][0] += 1;
@@ -107,7 +107,7 @@ int		**shift_positions(char **board, int **positions, int count)
 	}
 	else
 	{
-		while(iter < 4)
+		while (iter < 4)
 		{
 			positions[iter][1] += 1;
 			iter++;
@@ -116,7 +116,8 @@ int		**shift_positions(char **board, int **positions, int count)
 	return (positions);
 }
 
-/* check_positions 
+/*
+** check_positions
 ** Called form place_piece in fillit.c
 ** check each position on the board to see if it is open
 ** if a position is not open call shift to shift the positions
@@ -124,7 +125,7 @@ int		**shift_positions(char **board, int **positions, int count)
 ** otherwise return the open positions
 */
 
-int 	**check_positions(char **board, int **positions)
+int		**check_positions(char **board, int **positions)
 {
 	int count;
 

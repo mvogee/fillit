@@ -12,11 +12,12 @@
 
 #include "fillit.h"
 
-/* copy_positions
+/*
+** copy_positions
 ** copies positions and returns allocated strings with correct indexes
 */
 
-static int **copy_positions(int g_strt_pos[20][4][2], int piecenum)
+static int	**copy_positions(int g_strt_pos[20][4][2], int piecenum)
 {
 	int count;
 	int count2;
@@ -43,7 +44,8 @@ static int **copy_positions(int g_strt_pos[20][4][2], int piecenum)
 	return (ret);
 }
 
-/*	get_positions
+/*
+** get_positions
 ** starting coordinates of each piece placed nearest to the upper left corner of
 ** the board.
 **
@@ -52,9 +54,11 @@ static int **copy_positions(int g_strt_pos[20][4][2], int piecenum)
 ** square in the tetramino piece
 */
 
-int		**get_positions(int piecenum)
+int			**get_positions(int piecenum)
 {
-	int							g_strt_pos[20][4][2] = {
+	int	g_strt_pos[20][4][2];
+
+	g_strt_pos = {
 		{{-1, -1}, {-1, -1}, {-1, -1}, {-1, -1}},
 		{{0, 0}, {0, 1}, {1, 0}, {1, 1}},
 		{{0, 0}, {1, 0}, {2, 0}, {3, 0}},
