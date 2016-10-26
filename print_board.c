@@ -12,6 +12,12 @@
 
 #include "fillit.h"
 
+/*
+** get_size
+** finds the size of the board by finding the lenfth of one line
+** RETURN: size of the board
+*/
+
 int		get_size(char *str)
 {
 	int count;
@@ -21,6 +27,11 @@ int		get_size(char *str)
 		count++;
 	return (count);
 }
+
+/*
+** free_board
+** frees all memory allocated for the board
+*/
 
 void	free_board(char **board)
 {
@@ -36,8 +47,12 @@ void	free_board(char **board)
 		free(board[count]);
 		count++;
 	}
-	write(1, "	BOARD FREEEE\n\n", 15);
 }
+
+/*
+** print_board
+** prints the board! who would have guessed!?
+*/
 
 void	print_board(char **board)
 {
@@ -48,9 +63,9 @@ void	print_board(char **board)
 	count = 0;
 	count2 = 0;
 	size = get_size(board[0]);
-		while (count < size)
+	while (count < size)
 	{
-		while(board[count][count2] != '\0')
+		while (board[count][count2] != '\0')
 		{
 			write(1, &board[count][count2], 1);
 			count2++;

@@ -47,7 +47,6 @@ static int **copy_positions(int g_strt_pos[20][4][2], int piecenum)
 ** starting coordinates of each piece placed nearest to the upper left corner of
 ** the board.
 **
-**
 ** each index i in g_strt_pos[i] represents one of the 19 possible tetraminos
 ** each index j in g_strt_pos[i][j] represents a row and column location of a
 ** square in the tetramino piece
@@ -60,22 +59,18 @@ int		**get_positions(int piecenum)
 		{{0, 0}, {0, 1}, {1, 0}, {1, 1}},
 		{{0, 0}, {1, 0}, {2, 0}, {3, 0}},
 		{{0, 0}, {0, 1}, {0, 2}, {0, 3}},
-//REMOVE EMPTY LINES
 		{{0, 0}, {1, 0}, {2, 0}, {2, 1}},
 		{{0, 1}, {1, 1}, {2, 0}, {2, 1}},
 		{{0, 0}, {0, 1}, {1, 0}, {2, 0}},
 		{{0, 0}, {0, 1}, {1, 1}, {2, 1}},
-
 		{{0, 2}, {1, 0}, {1, 1}, {1, 2}},
 		{{0, 0}, {1, 0}, {1, 1}, {1, 2}},
 		{{0, 0}, {0, 1}, {0, 2}, {1, 2}},
 		{{0, 0}, {0, 1}, {0, 2}, {1, 0}},
-
 		{{0, 0}, {0, 1}, {1, 1}, {1, 2}},
 		{{0, 1}, {1, 0}, {1, 1}, {2, 0}},
 		{{0, 1}, {0, 2}, {1, 0}, {1, 1}},
 		{{0, 0}, {1, 0}, {1, 1}, {2, 1}},
-
 		{{0, 0}, {0, 1}, {0, 2}, {1, 1}},
 		{{0, 1}, {1, 0}, {1, 1}, {2, 1}},
 		{{0, 0}, {1, 0}, {1, 1}, {2, 0}},

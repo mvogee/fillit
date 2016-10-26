@@ -12,6 +12,10 @@
 
 #include "fillit.h"
 
+/* error_call
+** displays error message and exits program with FAILURE
+*/
+
 void			error_call(int type)
 {
 	if (type == 1)
@@ -20,8 +24,12 @@ void			error_call(int type)
 		write(1, "error: invalid file\n", 20);
 	if (type == 3)
 		write(1, "error: allocation problem\n", 26);
-	exit(42);
+	exit(EXIT_FAILURE);
 }
+
+/* get_fd
+** opens file and returns file descirptor
+*/
 
 static int		get_fd(char *file)
 {

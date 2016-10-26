@@ -11,37 +11,41 @@
 /* ************************************************************************** */
 
 #include "fillit.h"
-#include <stdio.h>
+
+/*
+** check_for_bad_indexes
+** - Checks each index making sure there are no values that will go beyond
+** the board boundries to avoid segfaults
+** RETURN: if everything is ok it will return positions unchanged
+** otherwise will return
+*/
+
 int		**check_for_bad_indexes(char **board, int **positions)
 {
 	int count;
 	int boardlen;
 
-	
 	count = 0;
 	boardlen = get_size(board[0]);
 	while (count < 4)
 	{
 		if (positions[count][0] >= boardlen)
-		{
-			write(1, "NULL\n", 5); //REMOVE THIS LINE
 			return (NULL);
-		}
-		if (board[positions[count][0]][positions[count][1]] == '\0')
-		{
-			write(1, "NULL\n", 5); //REMOVE THIS LINE
-				return (NULL);
-		}
+		if (positions[count][1] >= boardlen &&
+			positions[count][0] >= boardlen - 1)
+			return (NULL);
 		count++;
 	}
 	return (positions);
 }
 
-/* undo_place
+/*
+** undo_place
 ** itterates through the positions replacing the positoins with .
 ** effectively picking up a piece
 ** RETURN: returns updated board with given piece positions taken off;
 */
+
 char	**undo_place(char **board, int **positions)
 {
 	int iter;
@@ -52,17 +56,16 @@ char	**undo_place(char **board, int **positions)
 		board[positions[iter][0]][positions[iter][1]] = '.';
 		iter++;
 	}
-	print_board(board);
 	return (board);
 }
 
-/* find_xshift
+/*
+** find_xshift
 ** finds the smallest x value of the positions
 */
 
 int		find_xshift(int **positions)
 {
-	write(1, "entered find_xshift\n", 20); // REMOVE THIS LINE
 	int xshift;
 	int iter;
 
@@ -77,42 +80,39 @@ int		find_xshift(int **positions)
 	return (xshift);
 }
 
-// Shifting back to beggining of board we can subtract the smallest X value from all pieces to arrive back at the original x values
-// Y will never have to shift back up.
+/*
+** shift_positions
+** - Checks that the piece is not at the last possible possitions
+** - Determines whether or not to Y shift or X shift
+** - RETURN: Executes shift and returns updated indexes
+*/
 
 int		**shift_positions(char **board, int **positions, int count)
 {
-	write(1, "entered shift_positions\n", 24); // REMOVE THIS LINE
 	int iter;
 	int xshift;
 
 	iter = 0;
 	if (board[positions[count][0]][positions[count][1]] == '\0')
-	{
-		write(1, "NULL\n", 5); //REMOVE THIS LINE
 		return (NULL);
-	}
-	else if (board[positions[count][0]][positions[count][1]] == '\n') // shift y down 1 and reset x values to original
+	else if (board[positions[count][0]][positions[count][1]] == '\n')
 	{
-		write(1, "	Y shift\n", 9); // REMOVE THIS LINE
-		xshift = find_xshift(positions); // find the value to shift x back
+		xshift = find_xshift(positions);
 		while(iter < 4)
 		{
-			positions[iter][1] -= xshift; // shift x back
-			positions[iter][0] += 1;	// iterate y value
+			positions[iter][1] -= xshift;
+			positions[iter][0] += 1;
 			iter++;
 		}
 	}
-	else // x shift
+	else
 	{
-		write(1, "	X shift\n", 9); // REMOVE THIS LINE
 		while(iter < 4)
 		{
 			positions[iter][1] += 1;
 			iter++;
 		}
 	}
-	write(1, "exit shift_positions\n", 21); // REMOVE THIS LINE
 	return (positions);
 }
 
@@ -126,16 +126,12 @@ int		**shift_positions(char **board, int **positions, int count)
 
 int 	**check_positions(char **board, int **positions)
 {
-	write(1, "entered check_positions\n", 24); //REMOVE THIS LINE
 	int count;
 
 	count = 0;
 	positions = check_for_bad_indexes(board, positions);
 	if (positions == NULL)
-	{
-		write(1, "check_positions retuns NULL\n", 28); // REMOVE THIS LINE
 		return (NULL);
-	}
 	while (count < 4)
 	{
 		if (board[positions[count][0]][positions[count][1]] != '.')
@@ -143,14 +139,10 @@ int 	**check_positions(char **board, int **positions)
 			positions = shift_positions(board, positions, count);
 			positions = check_for_bad_indexes(board, positions);
 			if (positions == NULL)
-			{
-				write(1, "check_positions retuns NULL\n", 28); // REMOVE THIS LINE
 				return (NULL);
-			}
 			count = -1;
 		}
 		count++;
 	}
-	write(1,"exit check_positions\n", 21); // REMOVE THIS LINE
 	return (positions);
 }

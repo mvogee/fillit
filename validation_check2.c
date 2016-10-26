@@ -12,7 +12,7 @@
 
 #include "fillit.h"
 
-/*
+/* validate_file
 ** this funciton makes sure the file doesnt contain any incorrect characters or
 ** is missing any characters and that te the maps are the correct size.
 ** only thing left to check after this is that pieces are correct.
@@ -49,7 +49,7 @@ int		validate_file(char *pieces, int index)
 	return (1);
 }
 
-/*
+/* hash_count
 ** parameter takes in entire array of pieces
 ** Count how many hashtags there are. return 0 if there is not 4 hash marks
 ** in a piece. otherwise retrun the number of pieces.

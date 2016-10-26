@@ -26,7 +26,6 @@ int		main(int ac, char **av)
 {
 	char	*pieces_array;
 	int		*pieces;
-	int		piececount;
 
 	if (ac == 2)
 	{

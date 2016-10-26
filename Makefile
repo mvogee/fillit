@@ -18,9 +18,18 @@ SOURCE  = main.c \
 		  valid_piece_compare.c \
 		  validation_check.c \
 		  validation_check2.c \
+		  piece_positions.c \
+		  position_check.c \
+		  print_board.c \
+		  fillit.c \
 		  libft/ft_strcpy.c \
 		  libft/ft_strcat.c \
 		  libft/ft_strlen.c \
+		  libft/ft_memalloc.c \
+		  libft/ft_strcmp.c \
+		  libft/ft_strncpy.c \
+		  libft/ft_bzero.c \
+		  libft/ft_memcmp.c 
 
 HEADER = fillit.h
 
