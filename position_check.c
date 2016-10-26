@@ -87,12 +87,12 @@ int		**shift_positions(char **board, int **positions, int count)
 	int xshift;
 
 	iter = 0;
-	// if (board[positions[count][0]][positions[count][1]] == '\0')
-	// {
-	// 	write(1, "NULL\n", 5); //REMOVE THIS LINE
-	// 	return (NULL);
-	// }
-	if (board[positions[count][0]][positions[count][1]] == '\n') // shift y down 1 and reset x values to original
+	if (board[positions[count][0]][positions[count][1]] == '\0')
+	{
+		write(1, "NULL\n", 5); //REMOVE THIS LINE
+		return (NULL);
+	}
+	else if (board[positions[count][0]][positions[count][1]] == '\n') // shift y down 1 and reset x values to original
 	{
 		write(1, "	Y shift\n", 9); // REMOVE THIS LINE
 		xshift = find_xshift(positions); // find the value to shift x back
