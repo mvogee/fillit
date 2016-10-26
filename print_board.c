@@ -12,7 +12,7 @@
 
 #include "fillit.h"
 
-static int		get_size(char *str)
+int		get_size(char *str)
 {
 	int count;
 
@@ -20,6 +20,23 @@ static int		get_size(char *str)
 	while (str[count] != '\n' && str[count] != '\0')
 		count++;
 	return (count);
+}
+
+void	free_board(char **board)
+{
+	int size;
+	int count;
+
+	size = get_size(board[0]);
+	count = 0;
+	if (!board)
+		return ;
+	while (count < size)
+	{
+		free(board[count]);
+		count++;
+	}
+	write(1, "	BOARD FREEEE\n\n", 15);
 }
 
 void	print_board(char **board)

@@ -12,7 +12,36 @@
 
 #include "fillit.h"
 #include <stdio.h>
+int		**check_for_bad_indexes(char **board, int **positions)
+{
+	int count;
+	int boardlen;
 
+	
+	count = 0;
+	boardlen = get_size(board[0]);
+	while (count < 4)
+	{
+		if (positions[count][0] >= boardlen)
+		{
+			write(1, "NULL\n", 5); //REMOVE THIS LINE
+			return (NULL);
+		}
+		if (board[positions[count][0]][positions[count][1]] == '\0')
+		{
+			write(1, "NULL\n", 5); //REMOVE THIS LINE
+				return (NULL);
+		}
+		count++;
+	}
+	return (positions);
+}
+
+/* undo_place
+** itterates through the positions replacing the positoins with .
+** effectively picking up a piece
+** RETURN: returns updated board with given piece positions taken off;
+*/
 char	**undo_place(char **board, int **positions)
 {
 	int iter;
@@ -29,8 +58,8 @@ char	**undo_place(char **board, int **positions)
 
 /* find_xshift
 ** finds the smallest x value of the positions
-** 
 */
+
 int		find_xshift(int **positions)
 {
 	write(1, "entered find_xshift\n", 20); // REMOVE THIS LINE
@@ -58,10 +87,14 @@ int		**shift_positions(char **board, int **positions, int count)
 	int xshift;
 
 	iter = 0;
-	if (board[positions[count][0]][positions[count][1]] == '\0')
-		return (NULL);
-	else if (board[positions[count][0]][positions[count][1]] == '\n') // shift y down 1 and reset x values to original
+	// if (board[positions[count][0]][positions[count][1]] == '\0')
+	// {
+	// 	write(1, "NULL\n", 5); //REMOVE THIS LINE
+	// 	return (NULL);
+	// }
+	if (board[positions[count][0]][positions[count][1]] == '\n') // shift y down 1 and reset x values to original
 	{
+		write(1, "	Y shift\n", 9); // REMOVE THIS LINE
 		xshift = find_xshift(positions); // find the value to shift x back
 		while(iter < 4)
 		{
@@ -72,13 +105,14 @@ int		**shift_positions(char **board, int **positions, int count)
 	}
 	else // x shift
 	{
+		write(1, "	X shift\n", 9); // REMOVE THIS LINE
 		while(iter < 4)
 		{
 			positions[iter][1] += 1;
 			iter++;
 		}
 	}
-	write(1, "exit shift_positions\n", 21);
+	write(1, "exit shift_positions\n", 21); // REMOVE THIS LINE
 	return (positions);
 }
 
@@ -96,27 +130,27 @@ int 	**check_positions(char **board, int **positions)
 	int count;
 
 	count = 0;
-	while (count < 4)
+	positions = check_for_bad_indexes(board, positions);
+	if (positions == NULL)
 	{
-		if (board[positions[count][0]][positions[count][1]] == '\0')
-		{
-			write(1, "NULL\n", 5);
-				return (NULL);
-		}
-		count++;
+		write(1, "check_positions retuns NULL\n", 28); // REMOVE THIS LINE
+		return (NULL);
 	}
-	count = 0;
 	while (count < 4)
 	{
 		if (board[positions[count][0]][positions[count][1]] != '.')
 		{
 			positions = shift_positions(board, positions, count);
+			positions = check_for_bad_indexes(board, positions);
 			if (positions == NULL)
+			{
+				write(1, "check_positions retuns NULL\n", 28); // REMOVE THIS LINE
 				return (NULL);
-			count = 0;
+			}
+			count = -1;
 		}
 		count++;
 	}
-	write(1,"exit check_positions\n", 21);
+	write(1,"exit check_positions\n", 21); // REMOVE THIS LINE
 	return (positions);
 }

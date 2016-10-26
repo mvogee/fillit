@@ -66,5 +66,7 @@ void			start_fillit(int *piecenums, int piececount);
 
 /* pirnt board */
 void			print_board(char **board);
+int				get_size(char *str);
+void			free_board(char **board);
 
 #endif

@@ -71,6 +71,7 @@ printf("piececount: %d\n", piececount); //REMOVE THIS LINE
 	if (count >= piececount)
 	{
 		print_board(board);
+		free_board(board);
 		write(1, "complete\n",9);
 		exit(42);
 	}
@@ -79,24 +80,26 @@ printf("piececount: %d\n", piececount); //REMOVE THIS LINE
 	board = place_piece(board, positions, count);
 	while (count < piececount)
 	{
-				printf("count2: %d\n", count); // REMOVE THIS LINE
 		if (board == NULL)
 			return (-1);
 		solvable = start_solve(piecenums, board, piececount, count + 1);
-		write(1, "backtracked\n", 12);
+		write(1, "backtracked\n", 12); // REMOVE THIS LINE
 		// next three actions move positions and place the piece in the next open space.
 		board = undo_place(board, positions);
 		positions = check_positions(board, positions);
+		write(1, "START_SOLVE CHECK\n", 18);  // REMOVE THIS LINE
 		positions = shift_positions(board, positions, 0);
+		write(1, "START_SOLVE SHIFT\n", 18); // REMOVE THIS LINE
 		positions = check_positions(board, positions);
+		write(1, "START_SOLVE CHECK2\n", 19); // REMOVE THIS LINE
 		if (positions == NULL)
 			return (-1);
 		board = place_piece(board, positions, count);
 	}
 	print_board(board);
 	write(1, "complete\n",9);
-	//free(board) // make sure you find out how to free 2d array correctly
-	exit(42);
+	free_board(board);
+	exit(42); // MAKE SURE EXITING CORRECTLY
 	return (1);
 }
 
@@ -188,30 +191,27 @@ void	start_fillit(int *piecenums, int piececount)
 	if (boardsize == 1)
 		boardsize = 2;
 	while (solved != 1)
-	{	
+	{
+		write(1, "boardsize increased\n", 20);
 		board = create_board(boardsize, 0, 0);
 		solved = start_solve(piecenums, board, piececount, 0);
 		if (solved == -1)
 		{
-			//free(board); figure out how to correctly free double pointer
+			free_board(board);
 			boardsize++;
 		}
-		if (solved == 1)
+		if (solved == 1) // technically should never reach this becaue it will exit inside of start_solve
+		{
+			free_board(board);
 			exit(10);
-		//free(board); figure out how to correctly free double pointer
+		}
+		
 	}
-
-	int count = 0;	//REMOVE THIS LOOP; PRINTF TEST PRINTING LOOP;
-	while (count < boardsize)
-	{
-		printf("%s\n",board[count]);
-		count++;
-	} // END OF LOOP TO REMOVE
 }
 //DELETE THIS MAIN
 int main(void)
 {
-	int piece[2] = {1, 3};
-	start_fillit(piece, 2);
+	int piece[3] = {1, 1, 1};
+	start_fillit(piece, 3);
 	return (0);
 }
