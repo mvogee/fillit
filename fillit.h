@@ -42,6 +42,8 @@ typedef enum			e_pieces
 	T_INVRT = 			19
 }						t_type;
 
+extern int		g_strt_pos[20][4][2];
+
 /* readv2 */
 void			error_call(int type);
 char			*open_file(char *file);
@@ -68,5 +70,6 @@ void			start_fillit(int *piecenums, int piececount);
 void			print_board(char **board);
 int				get_size(char *str);
 void			free_board(char **board);
+
 
 #endif

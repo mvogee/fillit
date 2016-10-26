@@ -13,11 +13,39 @@
 #include "fillit.h"
 
 /*
-** copy_positions
-** copies positions and returns allocated strings with correct indexes
+** get_positions
+** starting coordinates of each piece placed nearest to the upper left corner of
+** the board.
+**
+** each index i in g_strt_pos[i] represents one of the 19 possible tetraminos
+** each index j in g_strt_pos[i][j] represents a row and column location of a
+** square in the tetramino piece
 */
 
-static int	**copy_positions(int g_strt_pos[20][4][2], int piecenum)
+int	g_strt_pos[20][4][2] = {
+	{{-1, -1}, {-1, -1}, {-1, -1}, {-1, -1}},
+	{{0, 0}, {0, 1}, {1, 0}, {1, 1}},
+	{{0, 0}, {1, 0}, {2, 0}, {3, 0}},
+	{{0, 0}, {0, 1}, {0, 2}, {0, 3}},
+	{{0, 0}, {1, 0}, {2, 0}, {2, 1}},
+	{{0, 1}, {1, 1}, {2, 0}, {2, 1}},
+	{{0, 0}, {0, 1}, {1, 0}, {2, 0}},
+	{{0, 0}, {0, 1}, {1, 1}, {2, 1}},
+	{{0, 2}, {1, 0}, {1, 1}, {1, 2}},
+	{{0, 0}, {1, 0}, {1, 1}, {1, 2}},
+	{{0, 0}, {0, 1}, {0, 2}, {1, 2}},
+	{{0, 0}, {0, 1}, {0, 2}, {1, 0}},
+	{{0, 0}, {0, 1}, {1, 1}, {1, 2}},
+	{{0, 1}, {1, 0}, {1, 1}, {2, 0}},
+	{{0, 1}, {0, 2}, {1, 0}, {1, 1}},
+	{{0, 0}, {1, 0}, {1, 1}, {2, 1}},
+	{{0, 0}, {0, 1}, {0, 2}, {1, 1}},
+	{{0, 1}, {1, 0}, {1, 1}, {2, 1}},
+	{{0, 0}, {1, 0}, {1, 1}, {2, 0}},
+	{{0, 1}, {1, 0}, {1, 1}, {1, 2}}
+};
+
+int			**get_positions(int piecenum)
 {
 	int count;
 	int count2;
@@ -42,41 +70,4 @@ static int	**copy_positions(int g_strt_pos[20][4][2], int piecenum)
 		count++;
 	}
 	return (ret);
-}
-
-/*
-** get_positions
-** starting coordinates of each piece placed nearest to the upper left corner of
-** the board.
-**
-** each index i in g_strt_pos[i] represents one of the 19 possible tetraminos
-** each index j in g_strt_pos[i][j] represents a row and column location of a
-** square in the tetramino piece
-*/
-
-int			**get_positions(int piecenum)
-{
-	int	g_strt_pos[20][4][2] = {
-		{{-1, -1}, {-1, -1}, {-1, -1}, {-1, -1}},
-		{{0, 0}, {0, 1}, {1, 0}, {1, 1}},
-		{{0, 0}, {1, 0}, {2, 0}, {3, 0}},
-		{{0, 0}, {0, 1}, {0, 2}, {0, 3}},
-		{{0, 0}, {1, 0}, {2, 0}, {2, 1}},
-		{{0, 1}, {1, 1}, {2, 0}, {2, 1}},
-		{{0, 0}, {0, 1}, {1, 0}, {2, 0}},
-		{{0, 0}, {0, 1}, {1, 1}, {2, 1}},
-		{{0, 2}, {1, 0}, {1, 1}, {1, 2}},
-		{{0, 0}, {1, 0}, {1, 1}, {1, 2}},
-		{{0, 0}, {0, 1}, {0, 2}, {1, 2}},
-		{{0, 0}, {0, 1}, {0, 2}, {1, 0}},
-		{{0, 0}, {0, 1}, {1, 1}, {1, 2}},
-		{{0, 1}, {1, 0}, {1, 1}, {2, 0}},
-		{{0, 1}, {0, 2}, {1, 0}, {1, 1}},
-		{{0, 0}, {1, 0}, {1, 1}, {2, 1}},
-		{{0, 0}, {0, 1}, {0, 2}, {1, 1}},
-		{{0, 1}, {1, 0}, {1, 1}, {2, 1}},
-		{{0, 0}, {1, 0}, {1, 1}, {2, 0}},
-		{{0, 1}, {1, 0}, {1, 1}, {1, 2}}
-};
-	return (copy_positions(g_strt_pos, piecenum));
 }
