@@ -12,7 +12,8 @@
 
 #include "fillit.h"
 
-/* find_shift
+/*
+** find_shift
 ** Takes the string and finds the number of dots it needs to be shifted
 ** in order to create a compareable string.
 ** Returns the number to shift to put the piece as far left as it can be.
@@ -48,7 +49,8 @@ static int		find_shift(char *str)
 	return (shift);
 }
 
-/* getlen
+/*
+** getlen
 ** Used in validate pieces
 ** Gets the length of the string we will need to
 ** create by counting how many indexes are btween
@@ -75,7 +77,8 @@ static int		getlen(char *str)
 	return (len);
 }
 
-/* copy_string
+/*
+** copy_string
 ** used in validate_pieces to create the string to be compared against
 ** DONE WORKING
 */
@@ -107,7 +110,8 @@ static void		copy_string(char *str, char *piece, int len, int shift)
 	}
 }
 
-/* validate_pieces
+/*
+** validate_pieces
 ** First count through and make sure each peice has exactly 4 hashtags.
 ** while doing so count how many pieces there are total.
 **
@@ -143,6 +147,7 @@ static int		validate_pieces(char *str)
 }
 
 /*
+** validation_check
 ** this is the kickoff function. it calls all the validation functions
 ** aquires the number of given pieces from the validate_pieces function.
 ** makes sure we have 26 or less pieces.

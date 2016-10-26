@@ -12,7 +12,8 @@
 
 #include "fillit.h"
 
-/* error_call
+/*
+** error_call
 ** displays error message and exits program with FAILURE
 */
 
@@ -27,7 +28,8 @@ void			error_call(int type)
 	exit(EXIT_FAILURE);
 }
 
-/* get_fd
+/*
+** get_fd
 ** opens file and returns file descirptor
 */
 

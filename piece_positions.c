@@ -56,9 +56,7 @@ static int	**copy_positions(int g_strt_pos[20][4][2], int piecenum)
 
 int			**get_positions(int piecenum)
 {
-	int	g_strt_pos[20][4][2];
-
-	g_strt_pos = {
+	int	g_strt_pos[20][4][2] = {
 		{{-1, -1}, {-1, -1}, {-1, -1}, {-1, -1}},
 		{{0, 0}, {0, 1}, {1, 0}, {1, 1}},
 		{{0, 0}, {1, 0}, {2, 0}, {3, 0}},
