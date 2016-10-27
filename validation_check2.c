@@ -81,7 +81,7 @@ int		hash_count(char *pieces)
 			return (0);
 		index++;
 	}
-	if (hash % 4 != 0)
+	if (hash % 4 != 0 || hash == 0 || totalpieces * 4 != hash)
 		return (0);
 	return (totalpieces);
 }

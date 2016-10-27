@@ -33,9 +33,9 @@ typedef enum			e_pieces
 	L_FLT_INVRT = 10,
 	L_FLT_INVRT_REVRS = 11,
 	Z = 12,
-	Z_ROTAT_REVRS = 13,
+	Z_ROTAT = 13,
 	Z_REVRS = 14,
-	Z_ROTAT = 15,
+	Z_ROTAT_REVRS = 15,
 	T = 16,
 	T_ROTAT = 17,
 	T_ROTAT_REVRS = 18,
@@ -45,7 +45,7 @@ typedef enum			e_pieces
 extern int		g_strt_pos[20][4][2];
 
 /*
-** readv2
+**readv2
 */
 void			error_call(int type);
 char			*open_file(char *file);
@@ -78,9 +78,8 @@ int				start_solve(int *piecenums, char **board, int piececount,
 							int count);
 char			**create_board(int size, int colcount, int rowcount);
 void			start_fillit(int *piecenums, int piececount);
-
 /*
-** print board
+** pirnt board
 */
 void			print_board(char **board);
 int				get_size(char *str);

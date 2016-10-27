@@ -20,11 +20,11 @@
 void			error_call(int type)
 {
 	if (type == 1)
-		write(1, "error: problem reading file\n", 28);
+		write(1, "error\n", 6);
 	if (type == 2)
-		write(1, "error: invalid file\n", 20);
+		write(1, "error\n", 6);
 	if (type == 3)
-		write(1, "error: allocation problem\n", 26);
+		write(1, "error\n", 6);
 	exit(EXIT_FAILURE);
 }
 

@@ -34,6 +34,6 @@ int		main(int ac, char **av)
 		start_fillit(pieces, count_pieces(pieces));
 	}
 	else
-		write(1, "usage: fillit input_file", 24);
+		write(1, "usage: fillit input_file\n", 25);
 	return (0);
 }
